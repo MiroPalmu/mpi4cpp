@@ -4,10 +4,7 @@ function(add_mpi_test name no_mpi_proc)
     #include_directories(${MY_TESTING_INCLUDES})
     add_executable(${name} test_${name}.c++)
 
-if(APPLE)
-    # Make sure to link MPI here too:
-    target_link_libraries(${name} PRIVATE -lmpi)
-endif()
+    target_link_libraries(${name} PRIVATE MPI::MPI_CXX)
 
     target_compile_options(${name} PRIVATE ${WARNING_FLAGS})
     set(test_parameters ${MPIEXEC_NUMPROC_FLAG} ${no_mpi_proc} "./${name}")
