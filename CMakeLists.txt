@@ -63,7 +63,7 @@ find_package (MPI)
 target_link_libraries (mpi4cpp PUBLIC MPI::MPI_CXX PRIVATE mpi4cpp_warnings)
 
 if (PROJECT_IS_TOP_LEVEL)
-    # Declares ENABLE_TESTING option (default: ON).
+    # Declares BUILD_TESTING option (default: ON).
     include(CTest)
     if (BUILD_TESTING)
         message (STATUS "Enabling tests...")
