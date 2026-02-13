@@ -58,7 +58,10 @@ target_compile_options (mpi4cpp_warnings
     $<$<CXX_COMPILER_ID:Clang>:-Wall -Wextra -Wpedantic -Wno-missing-braces>
 )
 
-find_package (MPI)
+
+if(NOT TARGET MPI::MPI_CXX)
+    find_package (MPI REQUIRED)
+endif()
 
 target_link_libraries (mpi4cpp PUBLIC MPI::MPI_CXX PRIVATE mpi4cpp_warnings)
 
@@ -70,3 +73,5 @@ if (PROJECT_IS_TOP_LEVEL)
         add_subdirectory (test)
     endif ()
 endif ()
+
+install (TARGETS mpi4cpp FILE_SET all_headers)
